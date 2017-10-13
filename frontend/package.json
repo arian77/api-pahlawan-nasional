@@ -1,0 +1,17 @@
+{
+  "name": "frontend-pahlawan",
+  "version": "1.0.0",
+  "description": "Frontend for pahlawan API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pahlawan"
+  ],
+  "author": "amirul-inc",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
