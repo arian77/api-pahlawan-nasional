@@ -59,6 +59,7 @@ let listPahlawan = [
         firstName: "Bung",
         lastName: "Tomo",
         die: 61,
+        area: "Surabaya",
         senjata: "Bambu Runcing"
     },
     {
