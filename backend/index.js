@@ -1,9 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var app = express(); // define our app using express
+const bodyParser = require("body-parser") // define our app using body-parser
+
+
+// Add function Access-Control-Allow-Origin
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  )
+  next()
+})
+
+// Add bodyyParse.json for receive POST method from json
+app.use(bodyParser.json())
+
 
 // Add dummy data listPahlawan
-const listPahlawan = [
+let listPahlawan = [
 
     {
         id: 1,
@@ -63,14 +79,19 @@ const listPahlawan = [
     },
 ]
 
-// Add function Access-Control-Allow-Origin
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  )
-  next()
+
+// function add pahlawan to listPahlawan
+const addPahlawanToList = (collection, item) => {
+  collection.push(item)
+  return collection // updated collection
+}
+
+// function add pahlawan to listPahlawan
+app.post("/api/pahlawan", (req, res) => {
+  const newPahlawan = req.body
+  const newListPahlawan = addPahlawanToList(listPahlawan, newPahlawan) // store updated collection to new variable
+  listPahlawan = newListPahlawan // replace current collection with the new collection
+  res.send(listPahlawan) // send the updated collection
 })
 
 // Send response ListpPahlawan from endpoint /api/pahlawan 
