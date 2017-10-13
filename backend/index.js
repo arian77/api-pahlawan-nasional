@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var app = express(); // define our app using express
 
+// Add dummy data listPahlawan
 const listPahlawan = [
 
     {
@@ -62,6 +63,7 @@ const listPahlawan = [
     },
 ]
 
+// Add function Access-Control-Allow-Origin
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
   res.header(
@@ -71,31 +73,41 @@ app.use((req, res, next) => {
   next()
 })
 
+// Send response ListpPahlawan from endpoint /api/pahlawan 
 app.get("/api/pahlawan", (req, res) => {
   res.send(listPahlawan)
 })
 
-
+// Send welcome response from our api server
 app.get('/api', function(req, res) {
-    res.json({ message: 'Welcome to our api !' });
+    res.json({ message: 'Welcome To Simple Api Pahlawan Nasional!' });
 });
+
+
+
+// Styling Home Page Our RestApi for Documentation
 
 /* GET home page. */
 app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-//Views directory for api use project_folder/views
+// About page 
+app.get('/about', function(req, res) {
+    res.render('pages/about');
+});
+
+// Views directory for api use project_folder/views
 app.set('view engine', 'ejs');
 
-//specify view engine and also to use it you need to install like npm install --save ejs
+// specify view engine and also to use it you need to install like npm install --save ejs
 app.set('view engine', 'ejs');
 
 
 
 
 
-
+// Set port our api server. 
 app.listen(3000, () => {
   console.log("our API running on localhost:3000")
 })
