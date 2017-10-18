@@ -3,6 +3,18 @@ var router = express.Router();
 var app = express(); // define our app using express
 const bodyParser = require("body-parser") // define our app using body-parser
 
+const insert = require("./insert.js")
+const MongoClient = require("mongodb").MongoClient
+// Connect to mongodb
+const url = "mongodb://localhost:27017/pahlawanNasional"
+
+
+// configure app to use bodyParser()
+// this will let us get the data from a POST
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+ 
 
 // Add function Access-Control-Allow-Origin
 app.use((req, res, next) => {
@@ -17,68 +29,69 @@ app.use((req, res, next) => {
 // Add bodyyParse.json for receive POST method from json
 app.use(bodyParser.json())
 
+// let listPahlawan = db.getCollection("pahlawan")
 
 // Add dummy data listPahlawan
-let listPahlawan = [
+// let listPahlawan = [
 
-    {
-        id: 1,
-        firstName: "Pangeran",
-        lastName: "Diponegoro",
-        die: 70,
-        area: "Yogyakarta",
-        senjata: "keris"
-    },
-    {
-        id: 2,
-        firstName: "Sultan",
-        lastName: "Hasanuddin",
-        die: "39",
-        area: "Makassar",        
-        senjata: "Badik"
-    },
-    {
-        id: 3,
-        firstName: "Tuanku",
-        lastName: "Imam Bonjol",
-        die: 92,
-        area: "Padang",
-        senjata: "Meriam"
+//     {
+//         id: 1,
+//         firstName: "Pangeran",
+//         lastName: "Diponegoro",
+//         die: 70,
+//         area: "Yogyakarta",
+//         senjata: "keris"
+//     },
+//     {
+//         id: 2,
+//         firstName: "Sultan",
+//         lastName: "Hasanuddin",
+//         die: "39",
+//         area: "Makassar",        
+//         senjata: "Badik"
+//     },
+//     {
+//         id: 3,
+//         firstName: "Tuanku",
+//         lastName: "Imam Bonjol",
+//         die: 92,
+//         area: "Padang",
+//         senjata: "Meriam"
 
-    },
-    {
-        id: 4,
-        firstName: "Jendral",
-        lastName: "Sudirman",
-        die: 34,
-        area: "Purbalingga",
-        senjata: "Senapan Api"
-    },
-    {
-        id: "5",
-        firstName: "Bung",
-        lastName: "Tomo",
-        die: 61,
-        area: "Surabaya",
-        senjata: "Bambu Runcing"
-    },
-    {
-        id: 6,
-        firstName: "Cut Nyak",
-        lastName: "Dhien",
-        die: 60,
-        area: "Aceh",
-        senjata: "rencong"
-    },
-    {
-        id: 7,
-        firstName: "Raden",
-        lastName: "Fatahillah",
-        die: "unknown",
-        area: "Jayakarta",
-        senjata: "meriam"
-    },
-]
+//     },
+//     {
+//         id: 4,
+//         firstName: "Jendral",
+//         lastName: "Sudirman",
+//         die: 34,
+//         area: "Purbalingga",
+//         senjata: "Senapan Api"
+//     },
+//     {
+//         id: "5",
+//         firstName: "Bung",
+//         lastName: "Tomo",
+//         die: 61,
+//         area: "Surabaya",
+//         senjata: "Bambu Runcing"
+//     },
+//     {
+//         id: 6,
+//         firstName: "Cut Nyak",
+//         lastName: "Dhien",
+//         die: 60,
+//         area: "Aceh",
+//         senjata: "rencong"
+//     },
+//     {
+//         id: 7,
+//         firstName: "Raden",
+//         lastName: "Fatahillah",
+//         die: "unknown",
+//         area: "Jayakarta",
+//         senjata: "meriam"
+//     },
+// ]
 
 
 // function add pahlawan to listPahlawan
@@ -127,7 +140,11 @@ app.set('view engine', 'ejs');
 
 
 
-
+MongoClient.connect(url, (err, db) => {
+    console.log("Connected to mongodb server")
+    insert(db)
+    db.close()
+})
 
 // Set port our api server. 
 app.listen(3000, () => {
