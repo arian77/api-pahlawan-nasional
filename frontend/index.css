@@ -1,0 +1,36 @@
+body {
+  background-image: url("img/history.png");
+}
+
+tr {
+  background-color: #cccc99;
+  font-family: comic sans ms;
+  box-shadow: none;
+}
+
+.card-footer.bg-outline-dark.text-muted.text-center {
+  background-color: #cccc99;
+  font-family: comic sans ms;
+
+  box-shadow: none;
+}
+
+.form-control.mr-sm-2 {
+  font-family: comic sans ms;
+}
+
+b {
+  color: #000000;
+}
+
+/*.btn.btn-outline-success.my-2.my-sm-0 {
+  background-color: #cccc99;
+}*/
+
+.card {
+  background-color: #cccc99;
+}
+
+.table.table-bordered.table-responsive {
+  background-color: #ffffff;
+}
