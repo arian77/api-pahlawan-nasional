@@ -11,7 +11,7 @@ tr {
 .card-footer.bg-outline-dark.text-muted.text-center {
   background-color: #cccc99;
   font-family: comic sans ms;
-
+  height: 30px;
   box-shadow: none;
 }
 
@@ -33,4 +33,15 @@ b {
 
 .table.table-bordered.table-responsive {
   background-color: #ffffff;
+}
+
+.container {
+  align: center;
+}
+
+a {
+  font-family: comic sans ms;
+}
+
+footer {
 }
